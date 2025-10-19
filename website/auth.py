@@ -36,3 +36,47 @@ def login():
             flash("Email does not exist!", category="error")
 
     return render_template("login.html", user=current_user) 
+
+@auth.route('/logout')
+@login_required # makes sure that page is not accessible unless user is logged in
+def logout():
+    logout_user()
+    return render_template("login.html")
+
+# create new account
+@auth.route('/signup', methods=["GET", "POST"])
+def sign_up():
+    if request.method == "POST":
+        
+        first_name = request.form['first_name']
+        last_name = request.form['last_name']
+        email = request.form['email']
+        password = generate_password_hash(request.form['password'], method='pbkdf2:sha256')
+        
+        session["email"] = email
+
+        # checks if email already exists
+        doc = users.find_one({"email": email}) 
+        if doc:
+            print("Email already in use!")
+        
+        #TODO: use regex to check email formats
+
+        # creates new user 
+        try:
+            users.insert_one({"first_name": first_name,
+                              "last_name": last_name,
+                              "email": email,
+                              "password": password,
+                              "books": []
+                            })
+            flash("User created!", category="success")
+            user = User(doc)
+            login_user(user, remember=True) 
+            return redirect(url_for("routes.index"))
+        
+        except Exception as e:
+            return f"ERROR:{e}"
+        
+    else:
+        return render_template("signup.html", user=current_user)
