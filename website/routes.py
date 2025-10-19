@@ -6,4 +6,11 @@ routes = Blueprint('routes', __name__)
 
 @routes.route("/", methods=["GET", "POST"])
 def index():
-    return render_template("index.html")
+    email = session.get("email")
+
+    if not email:
+        return redirect(url_for("auth.login"))
+    
+    user = users.find_one({"email": email})
+
+    return render_template("index.html", user=current_user)

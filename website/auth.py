@@ -68,7 +68,6 @@ def sign_up():
                               "last_name": last_name,
                               "email": email,
                               "password": password,
-                              "books": []
                             })
             flash("User created!", category="success")
             user = User(doc)
