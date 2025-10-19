@@ -5,6 +5,7 @@ from .db import users
 routes = Blueprint('routes', __name__)
 
 @routes.route("/", methods=["GET", "POST"])
+@login_required
 def index():
     email = session.get("email")
 

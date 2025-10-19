@@ -3,13 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}"
-    <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
     {% block head %}
     {% endblock %}
 </head>
 <body>
-    yo
+    <header>
+        <img class="logo" src="images/">
+        <nav>
+        {% if current_user.is_authenticated %}
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="">Placeholder</a></li>
+                <a class="cta" href="/logout"><button class="accBtn">Log out</button></a>
+            </ul>
+        </nav>
+        {% else %}
+
+        
+        <a class="cta" href="#"></a>
+        <!--Search bar goes here-->
+        <a class="cta" href="/login"><button class="accBtn">Log in</button></a>
+        <a class="cta" href="/signup"><button class="accBtn">Sign up</button></a>
+        {% endif %}
+    </header>
+
+    {% with messages = get_flashed_messages(with_categories=true)%}
+        {% if messages %}
+            {% for category, message in messages %}
+            {% if category == 'error'%}
+            <div class="alert alert-danger" role="alert">
+                {{ message }}
+                <button type="button" class="close" aria-label="Dismiss" onclick="this.closest('.alert').remove()">&times;</button>
+            </div>
+            {% else %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" onclick="this.closest('.alert').remove()">&times;
+                </button>
+            </div>
+            {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
     {% block body %}
     {% endblock %}
 </body>

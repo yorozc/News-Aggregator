@@ -1,1 +1,102 @@
-/*# sourceMappingURL=styles.css.map */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+li, a, button {
+  font-weight: 500;
+  font-size: 16px;
+  color: #edf0f1;
+  text-decoration: none;
+}
+
+header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 12px 40px;
+  background-color: #24252a;
+}
+
+.logo {
+  cursor: pointer;
+  margin-right: auto;
+}
+
+.nav-links {
+  list-style: none;
+}
+.nav-links li {
+  display: inline-block;
+  padding: 0px 20px;
+}
+.nav-links li a {
+  transition: all 0.3s ease 0s;
+  font-weight: 700;
+}
+.nav-links li a:hover {
+  color: rgba(0, 136, 169, 0.8);
+}
+
+.accBtn {
+  padding: 9px;
+  background-color: rgb(0, 136, 169);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+  margin-left: 20px;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+}
+.accBtn:hover {
+  background-color: rgba(0, 136, 169, 0.8);
+}
+
+.alert {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+}
+.alert .close {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: black;
+  font-weight: 300;
+}
+.alert.alert-danger {
+  background-color: rgba(245, 118, 118, 0.8);
+}
+.alert.alert-success {
+  background-color: rgba(135, 252, 135, 0.8);
+}
+
+.book-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 30px;
+  justify-items: center;
+  padding: 50px;
+}
+
+.book {
+  background-color: gray;
+  height: 250px;
+  width: 150px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.addBtn {
+  color: black;
+}/*# sourceMappingURL=styles.css.map */
