@@ -5,13 +5,13 @@ from .db import users
 routes = Blueprint('routes', __name__)
 
 @routes.route("/", methods=["GET", "POST"])
-@login_required
 def index():
-    email = session.get("email")
+    if current_user.is_authenticated:
+        email = session.get("email")
+        
+        user = users.find_one({"email": email})
 
-    if not email:
-        return redirect(url_for("auth.login"))
-    
-    user = users.find_one({"email": email})
-
-    return render_template("index.html", user=current_user)
+        return render_template("index.html", user=current_user)
+    else:
+        flash("Login or create an account!", category="error")
+        return render_template("index.html")
