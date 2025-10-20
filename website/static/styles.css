@@ -11,7 +11,7 @@ body {
 
 li, a, button {
   font-weight: 500;
-  font-size: 16px;
+  font-size: 20px;
   color: #edf0f1;
   text-decoration: none;
 }
@@ -22,11 +22,6 @@ header {
   align-items: center;
   padding: 12px 40px;
   background-color: #24252a;
-}
-
-.logo {
-  cursor: pointer;
-  margin-right: auto;
 }
 
 #news-name {
@@ -86,24 +81,4 @@ header {
 }
 .alert.alert-success {
   background-color: rgba(135, 252, 135, 0.8);
-}
-
-.book-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 30px;
-  justify-items: center;
-  padding: 50px;
-}
-
-.book {
-  background-color: gray;
-  height: 250px;
-  width: 150px;
-  padding: 10px;
-  border-radius: 10px;
-}
-
-.addBtn {
-  color: black;
 }/*# sourceMappingURL=styles.css.map */

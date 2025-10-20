@@ -17,7 +17,7 @@ body{
 
 li, a, button{
     font-weight: 500;
-    font-size: 16px;
+    font-size: 20px;
     color: $text_color;
     text-decoration: none;
 }
@@ -28,13 +28,7 @@ header{
     align-items: center;
     padding: 12px 40px;
     background-color: $bg_color;
-   
 
-}
-
-.logo{
-    cursor: pointer;
-    margin-right: auto;
 }
 
 #news-name{
@@ -89,8 +83,6 @@ header{
     align-items: center;
     padding: 12px;
     
-    
-
     & .close{
         background: transparent;
         border: 0;
@@ -99,7 +91,6 @@ header{
         color: black;
         font-weight: 300;
     }
-    
     
     &.alert-danger{
         background-color: rgb(245, 118, 118, 0.8);
@@ -111,25 +102,4 @@ header{
 
 }
 
-.book-container{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 30px;
-    justify-items: center;
-    padding: 50px;
-
-}
-
-.book{
-    background-color: gray;
-    height: 250px;
-    width: 150px;
-    padding: 10px;
-    border-radius: 10px;
-
-}
-
-.addBtn {
-    color: black;
-}
 
