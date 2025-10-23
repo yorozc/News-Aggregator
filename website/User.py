@@ -8,3 +8,7 @@ class User(UserMixin):
         @property 
         def is_active(self):
             return bool(self.doc.get("is_active", True))
+        
+        @property
+        def username(self):
+             return str(self.doc.get("first_name"))

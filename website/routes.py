@@ -7,8 +7,8 @@ routes = Blueprint('routes', __name__)
 @routes.route("/", methods=["GET", "POST"])
 def index():
     if current_user.is_authenticated:
-
-        return render_template("index.html", user=current_user)
+        
+        return render_template("index.html", name = current_user.username)
     else:
         flash("Login or create an account!", category="error")
         return render_template("index.html")
