@@ -6,4 +6,10 @@
 
 {% block body %}
 
+{% if current_user.is_authenticated %}
+<div>
+    <p>Welcome, {{ user.username }}</p>
+</div>
+{% endif %}
+
 {% endblock %}

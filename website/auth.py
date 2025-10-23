@@ -59,6 +59,8 @@ def sign_up():
         doc = users.find_one({"email": email}) 
         if doc:
             print("Email already in use!")
+            flash("Email already exists, login instead", category="error")
+            return redirect(url_for("auth.login"))
         
         #TODO: use regex to check email formats
 

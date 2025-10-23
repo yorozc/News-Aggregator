@@ -7,9 +7,6 @@ routes = Blueprint('routes', __name__)
 @routes.route("/", methods=["GET", "POST"])
 def index():
     if current_user.is_authenticated:
-        email = session.get("email")
-        
-        user = users.find_one({"email": email})
 
         return render_template("index.html", user=current_user)
     else:
