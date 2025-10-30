@@ -1,7 +1,9 @@
 from flask import render_template, redirect, Blueprint, url_for, flash, request, session
 from flask_login import login_required, current_user
-import feedparser
+import feedparser #used for RSS feeds
+from .rss_feeds import rss_feeds #dict of feeds
 from .db import users
+
 
 routes = Blueprint('routes', __name__)
 
