@@ -13,5 +13,6 @@ def index():
         
         return render_template("index.html", name = current_user.username)
     else:
+        
         flash("Login or create an account!", category="error")
         return render_template("index.html")
