@@ -1,6 +1,6 @@
 from flask import render_template, redirect, Blueprint, url_for, flash, request, session
 from flask_login import login_required, current_user
-from .rss_feeds import rss_feeds #dict of feeds
+from .rss_feeds import parse #dict of feeds
 from .db import users
 
 
@@ -9,9 +9,22 @@ routes = Blueprint('routes', __name__)
 @routes.route("/", methods=["GET", "POST"])
 def index():
     if current_user.is_authenticated:
+
+        articles = parse()
+
+        page = request.args.get('page', 1, type=int)
+        per_page =10
+        total_articles = len(articles)
+        start = (page-1) * per_page
+        end = start + per_page
+        paginated_articles = articles[start:end]
         
-        return render_template("index.html", name = current_user.username)
+        return render_template("index.html", name=current_user.username, articles=paginated_articles, page=page, total_pages=total_articles // per_page + 1)
     else:
 
         flash("Login or create an account!", category="error")
         return render_template("index.html")
+    
+@routes.route("/search", methods=["GET", "POST"])
+def search():
+    pass
