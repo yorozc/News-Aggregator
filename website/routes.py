@@ -31,11 +31,7 @@ def index():
 def search():
     query = request.args.get('q')
 
-    articles = []
-    for source, feed in rss_feeds.items():
-        parsed_feed = feedparser.parse(feed)
-        entries = [(source, entry) for entry in parsed_feed.entries]
-        articles.extend(entries)
+    articles = parse()
 
     results = [article for article in articles if query.lower() in article[1].title.lower()]
 
