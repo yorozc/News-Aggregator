@@ -9,22 +9,23 @@ routes = Blueprint('routes', __name__)
 
 @routes.route("/", methods=["GET", "POST"])
 def index():
+    articles = parse()
+
+    page = request.args.get('page', 1, type=int)
+    per_page =10
+    total_articles = len(articles)
+    start = (page-1) * per_page
+    end = start + per_page
+    paginated_articles = articles[start:end]
+        
     if current_user.is_authenticated:
 
-        articles = parse()
-
-        page = request.args.get('page', 1, type=int)
-        per_page =10
-        total_articles = len(articles)
-        start = (page-1) * per_page
-        end = start + per_page
-        paginated_articles = articles[start:end]
-        
         return render_template("index.html", name=current_user.username, articles=paginated_articles, page=page, total_pages=total_articles // per_page + 1)
+       
     else:
 
         flash("Login or create an account!", category="error")
-        return render_template("index.html")
+        return render_template("index.html", articles=paginated_articles, page=page, total_pages=total_articles // per_page + 1)
     
 @routes.route("/search", methods=["GET", "POST"])
 def search():
