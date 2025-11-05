@@ -23,8 +23,6 @@ def parse():
     # sorts articles for the newest
     articles = sorted(articles, key=lambda x: x[1].published_parsed, reverse=True)
 
-    
-
     return articles
 
 # parse can be used for the daily debrief (most recent news)
