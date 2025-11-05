@@ -1,8 +1,6 @@
 from flask import render_template, redirect, Blueprint, url_for, flash, request, session
 from flask_login import login_required, current_user
-from .rss_feeds import parse, rss_feeds #dict of feeds & list of articles
-import feedparser
-from .db import users
+from .rss_feeds import parse #dict of feeds
 
 
 routes = Blueprint('routes', __name__)

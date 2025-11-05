@@ -43,7 +43,7 @@ def logout():
     logout_user()
     return render_template("login.html")
 
-# create new account
+# creates new account
 @auth.route('/signup', methods=["GET", "POST"])
 def sign_up():
     if request.method == "POST":
@@ -64,7 +64,7 @@ def sign_up():
         
         #TODO: use regex to check email formats
 
-        # creates new user 
+        # creates new user in db
         try:
             users.insert_one({"first_name": first_name,
                               "last_name": last_name,
