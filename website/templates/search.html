@@ -15,6 +15,10 @@
             <p>Source: {{ article[0]  }}</p>
         </article>
     {% endfor %}
+
+    {% if articles | length == 0%}
+        <p>No results found.</p>
+    {% endif %}
 </div>
 
 {% endblock %}
