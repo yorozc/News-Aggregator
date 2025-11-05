@@ -1,6 +1,7 @@
 from flask import render_template, redirect, Blueprint, url_for, flash, request, session
 from flask_login import login_required, current_user
-from .rss_feeds import parse #dict of feeds
+from .rss_feeds import parse, rss_feeds #dict of feeds & list of articles
+import feedparser
 from .db import users
 
 
@@ -27,4 +28,14 @@ def index():
     
 @routes.route("/search", methods=["GET", "POST"])
 def search():
-    pass
+    query = request.args.get('q')
+
+    articles = []
+    for source, feed in rss_feeds.items():
+        parsed_feed = feedparser.parse(feed)
+        entries = [(source, entry) for entry in parsed_feed.entries]
+        articles.extend(entries)
+
+    results = [article for article in articles if query.lower() in article[1].title.lower()]
+
+    return render_template('search.html', articles=results, query=query)
