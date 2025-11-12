@@ -61,7 +61,23 @@ header {
   background-color: rgba(0, 136, 169, 0.8);
 }
 
+.auth {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 2em;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 400px;
+  z-index: 1000;
+}
+
 fieldset {
+  display: flex;
+  flex-direction: column;
   margin: 2em 0;
   padding: 1em 2em;
   border: solid 1px #ccc;
@@ -76,6 +92,33 @@ fieldset legend {
 fieldset label {
   display: block;
   margin-top: 1em;
+}
+fieldset label:first-of-type {
+  margin-top: 0;
+}
+
+@media screen and (min-width: 430px) {
+  legend {
+    font-size: 1.75em;
+  }
+  fieldset {
+    width: 40%;
+    min-width: 320px;
+    margin: auto;
+  }
+}
+input[type=email], input[type=password], input[type=submit] {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  box-sizing: border-box;
+}
+
+#btn_login {
+  display: block;
+  margin: 20px auto;
+  padding: 10px;
+  max-width: 100px;
 }
 
 .alert {
