@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
     {% block head %}
     {% endblock %}
 </head>
@@ -25,10 +26,10 @@
 
         
         <a class="cta" href="#"></a>
-        <form action="{{url_for('routes.search')}}" method="GET">
+        <!--<form action="{{url_for('routes.search')}}" method="GET">
             <input type="text" name="q" placeholder="Search For Keyword">
             <input type="submit" value="Search">
-        </form>    
+        </form>  -->  
         <ul class="nav-links">
             <li><a href="/">Home</a></li>
             <li><a class="cta" href="/login"><button class="accBtn">Log in</button></a></li>

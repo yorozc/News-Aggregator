@@ -7,28 +7,24 @@
 {%block body %}
     <!--When form is submitted, send via post-->
     <!--Name determines what is sent to backend-->
-    <h3 align="center">Sign Up</h3>
 
-    <div class="form-group">
-        <form action="/signup" method="post">
-        <label for="first_name">First Name</label>
-        <input type="text" name="first_name" id="first_name" placeholder="John..."/>
-    </div>
+    <form action="/signup" method="post" class="auth">
+        <fieldset>
+            <h2 class="form-header">Sign Up</h2>
+            <label for="first_name">First Name</label>
+            <input type="text" name="first_name" id="first_name" placeholder="John...">
 
-    <div class="form-group">
-        <label for="last_name">Last Name</label>
-        <input type="text" name="last_name" id="last_name" placeholder="Doe..."/>
-    </div>
+            <label for="last_name">Last Name</label>
+            <input type="text" name="last_name" id="last_name" placeholder="Doe..."/>
+    
+            <label for="email">Email Address</label>
+            <input type="email" name="email" id="email" required/>
 
-    <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" name="email" id="email" placeholder="Enter email" required/>
-    </div>
-
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" placeholder="Enter password" required/>
-    </div>
-        <input type="submit" value="Sign Up" id="btn_sign_up" />
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required/>
+    
+            <input type="submit" value="Sign Up" id="btn_signup" />
+        </fieldset>
+        
     </form>
 {% endblock %}
