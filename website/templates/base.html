@@ -12,9 +12,12 @@
         <p id="news-name">NOTL News</p>
         <nav>
         {% if current_user.is_authenticated %}
+            <form action="{{url_for('routes.search')}}" method="GET">
+                <input type="text" name="q" placeholder="Search For Keyword">
+                <input type="submit" value="Search">
+            </form>   
             <ul class="nav-links">
-                <li><a href="/">Home</a></li>
-                <li><a href="">Placeholder</a></li>
+                <li><a href="/">Home</a></li> 
                 <a class="cta" href="/logout"><button class="accBtn">Log out</button></a>
             </ul>
         </nav>

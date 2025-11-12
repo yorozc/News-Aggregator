@@ -72,8 +72,23 @@ header{
     }
 }
 
-.form-group{
+fieldset{
+    margin: 2em 0;
+    padding: 1em 2em;
+    border: solid 1px #ccc;
+    border-radius: 6px;
+    min-width: 200px;
 
+    & legend{
+        font-size: 1.25em;
+        padding: 0 .25em;
+        color: #999;
+    }
+
+    & label{
+        display: block;
+        margin-top: 1em;
+    }
 }
 
 .alert{
