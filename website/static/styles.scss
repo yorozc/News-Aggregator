@@ -9,7 +9,7 @@ $btn_color: rgba(0, 136, 169, 1);
 }
 
 body{
-    font-family: 'Robot', sans-serif;
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -23,14 +23,17 @@ li, a, button{
     text-decoration: none;
 }
 
-header{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 12px 40px;
-    background-color: $bg_color;
-
+header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 12px 40px;
+  background-color: $bg_color;
+  flex-wrap: nowrap;        // <--- prevents wrapping
+  overflow-x: auto;         // <--- allows scrolling instead of stacking
+  white-space: nowrap;      // <--- keeps text & buttons inline
 }
+
 
 #news-name{
     margin-right: auto;
@@ -40,7 +43,12 @@ header{
 }
 
 .nav-links{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
     list-style: none;
+    margin: 0;
+    padding: 0;
 
     li{
         display: inline-block;
@@ -58,7 +66,40 @@ header{
     }
 }
 
-.accBtn{
+.menu-toggle{
+    display: none;
+}
+
+@media screen and (max-width: 700px) {
+  .nav-links {
+    display: none; // hide links
+  }
+
+  .menu-toggle {
+    display: block;
+    font-size: 24px;
+    color: $text_color;
+    cursor: pointer;
+  }
+}
+
+.nav-links.active {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 64px;            /* adjust to header height */
+    right: 16px;
+    background: #24252a;  /* your $bg_color */
+    border-radius: 12px;
+    padding: 10px 12px;
+    gap: 8px;
+    box-shadow: 0 8px 20px rgba(0,0,0,.3);
+    z-index: 1001;
+  }
+
+
+
+.accBtn{ //btns for login and sign up
     padding: 9px;
     background-color: $btn_color;
     border: none;
@@ -73,7 +114,7 @@ header{
     }
 }
 
-.auth{
+.auth{ //form for login and sign up
     position: fixed;
     top: 50%;               
     left: 50%;             
@@ -148,16 +189,17 @@ input[type=submit]{
   align-items: center;
   gap: 6px;
   background-color: #fff;
-  padding: 5px 8px;
+  padding: 2px 6px;
   border-radius: 999px;
   box-shadow: 0 2px 5px rgba(0,0,0,.2);
 
   input[type="text"] {
     border: none;
     outline: none;
-    padding: 6px 8px;
-    font-size: 14px;
-    width: 80px;       // uncomment for "way skinnier"
+    padding: 4px 6px;
+    font-size: 13px;
+    width: 80px;
+    border-radius: 20px;
     // grows on focus (optional)
     // transition: width .25s ease;
     // &:focus { width: 200px; }

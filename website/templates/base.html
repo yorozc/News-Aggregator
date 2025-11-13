@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
     <link 
         rel="stylesheet" 
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" 
     />
+    <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
 
 
     {% block head %}
@@ -17,37 +17,38 @@
 <body>
     <header>
         <p id="news-name">NOTL News</p>
-        <nav>
+        <i class="fa-solid fa-bars menu-toggle" aria-label="Menu" role="button" tabindex="0"></i>
         {% if current_user.is_authenticated %}
-            <form action="{{url_for('routes.search')}}" method="GET">
-                <input type="text" name="q" placeholder="Search For Keyword">
-                <input type="submit" value="Search">
-            </form>   
-            <ul class="nav-links">
-                <li><a href="/">Home</a></li> 
-                <a class="cta" href="/logout"><button class="accBtn">Log out</button></a>
-            </ul>
-        </nav>
+            <nav>
+                <form action="{{url_for('routes.search')}}" method="GET">
+                    <input type="text" name="q" placeholder="Search For Keyword">
+                    <input type="submit" value="Search">
+                </form>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li> 
+                    <a class="cta" href="/logout"><button class="accBtn">Log out</button></a>
+                </ul>
+            </nav>
         {% else %}
 
-        
-        <a class="cta" href="#"></a>
+            <nav>
 
-        <ul class="nav-links">
-            <li><a href="/">Home</a></li>
-            <li>
-                <form action="{{url_for('routes.search')}}" method="GET" class="search-bar">
-                    <input type="text" name="q" placeholder="Search" >
-                    <button type="submit" class="search-btn">
-                        <i class="fa-solid fa-magnifying-glass"></i> <!-- if using Font Awesome -->
-                    </button>
-    
-                </form> 
-            </li>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li>
+                        <form action="{{url_for('routes.search')}}" method="GET" class="search-bar">
+                            <input type="text" name="q" placeholder="Search" >
 
-            <li><a class="cta" href="/login"><button class="accBtn">Log in</button></a></li>
-            <li><a class="cta" href="/signup"><button class="accBtn">Sign up</button></a></li>
-        </ul>
+                            <button type="submit" class="search-btn">
+                                <i class="fa-solid fa-magnifying-glass"></i> <!-- if using Font Awesome -->
+                            </button>
+                        </form> 
+                    </li>
+                    
+                    <li><a class="cta" href="/login"><button class="accBtn">Log in</button></a></li>
+                    <li><a class="cta" href="/signup"><button class="accBtn">Sign up</button></a></li>
+                </ul>
+            </nav>
         
         {% endif %}
     </header>
@@ -72,5 +73,20 @@
     {% endwith %}
     {% block body %}
     {% endblock %}
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.querySelector('.menu-toggle');
+    const links  = document.querySelector('.nav-links');
+    if (!toggle || !links) return;
+
+    const toggleMenu = () => links.classList.toggle('active');
+    toggle.addEventListener('click', toggleMenu);
+    toggle.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') toggleMenu();
+        });
+    });
+
+</script>
 </body>
 </html>
