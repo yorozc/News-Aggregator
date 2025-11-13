@@ -72,7 +72,7 @@ header {
 
 @media screen and (max-width: 700px) {
   .nav-links {
-    display: none; // hide links
+    display: none;
   }
 
   .menu-toggle {
@@ -87,9 +87,9 @@ header {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 64px;            /* adjust to header height */
+    top: 64px;           
     right: 16px;
-    background: #24252a;  /* your $bg_color */
+    background: #24252a;
     border-radius: 12px;
     padding: 10px 12px;
     gap: 8px;

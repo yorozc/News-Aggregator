@@ -20,12 +20,15 @@
         <i class="fa-solid fa-bars menu-toggle" aria-label="Menu" role="button" tabindex="0"></i>
         {% if current_user.is_authenticated %}
             <nav>
-                <form action="{{url_for('routes.search')}}" method="GET">
-                    <input type="text" name="q" placeholder="Search For Keyword">
-                    <input type="submit" value="Search">
-                </form>
                 <ul class="nav-links">
                     <li><a href="/">Home</a></li> 
+                    <form action="{{url_for('routes.search')}}" method="GET" class="search-bar">
+                        <input type="text" name="q" placeholder="Search" >
+
+                        <button type="submit" class="search-btn">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </form> 
                     <a class="cta" href="/logout"><button class="accBtn">Log out</button></a>
                 </ul>
             </nav>
