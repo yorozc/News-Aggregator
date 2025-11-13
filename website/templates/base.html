@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <link 
+        rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" 
+    />
+
+
     {% block head %}
     {% endblock %}
 </head>
@@ -26,12 +32,19 @@
 
         
         <a class="cta" href="#"></a>
-        <!--<form action="{{url_for('routes.search')}}" method="GET">
-            <input type="text" name="q" placeholder="Search For Keyword">
-            <input type="submit" value="Search">
-        </form>  -->  
+
         <ul class="nav-links">
             <li><a href="/">Home</a></li>
+            <li>
+                <form action="{{url_for('routes.search')}}" method="GET" class="search-bar">
+                    <input type="text" name="q" placeholder="Search" >
+                    <button type="submit" class="search-btn">
+                        <i class="fa-solid fa-magnifying-glass"></i> <!-- if using Font Awesome -->
+                    </button>
+    
+                </form> 
+            </li>
+
             <li><a class="cta" href="/login"><button class="accBtn">Log in</button></a></li>
             <li><a class="cta" href="/signup"><button class="accBtn">Sign up</button></a></li>
         </ul>

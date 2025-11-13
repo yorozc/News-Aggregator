@@ -113,11 +113,54 @@ input[type=email], input[type=password], input[type=submit], input[type=text] {
   font-size: 1em;
 }
 
-#btn_login #btn_signup {
+input[type=submit] {
+  background-color: #24252a;
+  color: #edf0f1;
+  font-weight: bold;
+}
+
+#btn_login, #btn_signup {
   display: block;
   margin: 20px auto;
   padding: 10px;
   max-width: 100px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #fff;
+  padding: 5px 8px;
+  border-radius: 999px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.search-bar input[type=text] {
+  border: none;
+  outline: none;
+  padding: 6px 8px;
+  font-size: 14px;
+  width: 80px;
+}
+.search-bar .search-btn {
+  background-color: rgb(0, 136, 169);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.search-bar .search-btn:hover {
+  background-color: rgba(0, 136, 169, 0.8);
+}
+.search-bar .search-btn i {
+  color: #fff;
+  font-size: 14px;
+  line-height: 1;
 }
 
 .alert {
