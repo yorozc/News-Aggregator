@@ -17,5 +17,5 @@ def parse():
     # sorts articles for the newest
     articles = sorted(articles, key=lambda x: x[1].published_parsed, reverse=True)
 
-    print(articles[1][1])
+    # print(articles[1][1])
     return articles
