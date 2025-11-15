@@ -74,7 +74,7 @@ def sign_up():
             flash("User created!", category="success")
             user = User(doc)
             login_user(user, remember=True) 
-            return redirect(url_for("routes.index"))
+            return redirect(url_for("auth.login"))
         
         except Exception as e:
             return f"ERROR:{e}"
