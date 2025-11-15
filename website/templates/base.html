@@ -38,7 +38,6 @@
             <nav>
 
                 <ul class="nav-links">
-                    <li><a href="/">Home</a></li>
                     <li>
                         <form action="{{url_for('routes.search')}}" method="GET" class="search-bar">
                             <input type="text" name="q" placeholder="Search" >
@@ -48,6 +47,7 @@
                             </button>
                         </form> 
                     </li>
+                    <li><a href="/">Home</a></li>
                     
                     <li><a class="cta" href="/login"><button class="accBtn">Log in</button></a></li>
                     <li><a class="cta" href="/signup"><button class="accBtn">Sign up</button></a></li>
