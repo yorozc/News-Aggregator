@@ -44,10 +44,6 @@ header {
     margin: 0;
 }
 
-nav {
-    flex-grow: 1;
-}
-
 .nav-links{
     display: flex;
     align-items: center;
@@ -85,19 +81,6 @@ nav {
 
 .nav-links a:hover {
   text-decoration: underline;
-}
-
-@media screen and (max-width: 700px) {
-  .nav-links {
-    display: none;
-  }
-
-  .menu-toggle {
-    display: block;
-    font-size: 24px;
-    color: $text_color;
-    cursor: pointer;
-  }
 }
 
 .nav-links.active {
@@ -169,14 +152,44 @@ fieldset{
         margin-bottom: 1em;
     }
 }
+@media (min-width: 769px){
+    nav { flex: 1 1 auto; }
+}
 
-@media screen and (min-width: 430px) {
-
-    fieldset { 
-        width: 40%;
-        min-width: 320px;
-        margin: auto;
+@media (max-width: 768px) {
+    header{
+        justify-content: space-between;
+        padding: 0.8rem 1rem;
+        gap: 1rem;
     }
+
+    #news-name { margin-right: auto; }
+
+    .menu-toggle { 
+        display: block; 
+        margin-left: 0.75rem; 
+        font-size: 1.25rem;
+    }
+
+    nav { flex: 0 0 auto; width: auto; }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 60;
+        left: 1rem;
+        right: 1rem;
+        background: #222;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+  
 }
 
 input[type=email], input[type=password], input[type=submit], input[type=text]{
