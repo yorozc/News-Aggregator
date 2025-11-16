@@ -71,10 +71,11 @@ def sign_up():
                               "email": email,
                               "password": password,
                             })
+            doc = users.find_one({"email": email})
             flash("User created!", category="success")
             user = User(doc)
             login_user(user, remember=True) 
-            return redirect(url_for("auth.login"))
+            return redirect(url_for("routes.index"))
         
         except Exception as e:
             return f"ERROR:{e}"
