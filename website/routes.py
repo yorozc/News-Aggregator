@@ -1,6 +1,7 @@
-from flask import render_template, redirect, Blueprint, url_for, flash, request, session
+from flask import render_template, redirect, Blueprint, url_for, flash, request, jsonify
 from flask_login import login_required, current_user
 from dateutil import parser
+import json
 from .rss_feeds import parsed_articles #dict of feeds
 
 
@@ -17,6 +18,9 @@ def index():
 
     daily_debrief = articles[:5]
     rest_articles = articles[5:]
+
+    print(daily_debrief)
+    print(rest_articles)
 
     page = request.args.get('page', 1, type=int)
     per_page =12
@@ -47,6 +51,17 @@ def search():
 
     return render_template('search.html', articles=results, query=query)
 
+@routes.route("/save", methods=["POST"])
+def save():
+
+    data = request.get_json()
+    source = data.get('source')
+    article = data.get('article')
+
+
+    return jsonify({"message": f"Saved article from {source}"})
+
 @routes.route("/saved_articles")
 def saved_articles():
-    return render_template('saved_articles.html')
+
+    return render_template("saved_articles.html")

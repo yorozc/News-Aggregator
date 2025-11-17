@@ -575,8 +575,17 @@ input[type=submit] {
 .right-side-meta .fa-heart {
   font-size: 1.2rem;
   transition: transform 0.2s ease-in-out;
+  color: black;
 }
 .right-side-meta .fa-heart:hover {
   color: red;
   transform: scale(1.15);
+}
+.right-side-meta .fa-heart:active {
+  opacity: 0.6;
+}
+
+.save-article {
+  border: none;
+  background: none;
 }/*# sourceMappingURL=styles.css.map */
