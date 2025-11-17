@@ -46,3 +46,7 @@ def search():
     results = [article for article in articles if query.lower() in article[1].title.lower()]
 
     return render_template('search.html', articles=results, query=query)
+
+@routes.route("/saved_articles")
+def saved_articles():
+    return render_template('saved_articles.html')

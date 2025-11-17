@@ -575,17 +575,18 @@ input[type=submit]{
 
     & a{
         display: block;
-        color: black;
+        color: rgb(255, 255, 255);
         text-decoration: none;
         padding: 10px 15px;
     }
 
     & .content{
         display: none;
-        right: 10px;
+        right: 23px;
         position: absolute;
         background-color: $bg_color;
         min-width: 100px;
+        border: 1px solid white;
     }
 
     & .content.active{
