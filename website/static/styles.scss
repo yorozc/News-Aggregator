@@ -556,16 +556,40 @@ input[type=submit]{
   .debrief-track { min-height: 130px; }
 }
 
-.user-btn{
+.dropdown .user-btn{
     background: none;
     border-style: solid;
 
     &:hover{
         background-color: $btn_color;
+        cursor: pointer;
     }
 
     &:active{
         opacity: 0.8;
+    }
+
+}
+
+.dropdown{
+
+    & a{
+        display: block;
+        color: black;
+        text-decoration: none;
+        padding: 10px 15px;
+    }
+
+    & .content{
+        display: none;
+        right: 10px;
+        position: absolute;
+        background-color: $bg_color;
+        min-width: 100px;
+    }
+
+    & .content.active{
+        display: block;
     }
 }
 

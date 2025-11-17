@@ -32,9 +32,9 @@
                     <div class="dropdown">
                         <button class="user-btn"><i class="fa-solid fa-user"></i></button>
                         <div class="content">
-                            <a href=""></a>
-                            <a href=""></a>
-                            <a href=""></a>
+                            <a href="">Apple</a>
+                            <a href="">Orange</a>
+                            <a href="">Banana</a>
                         </div>
                     </div>
                 
@@ -144,6 +144,27 @@ document.addEventListener('DOMContentLoaded', () => {
   start();
 });
 </script>
+<script>
 
+    document.addEventListener('DOMContentLoaded', () =>{
+        const userBtn = document.querySelector(".user-btn");
+        const dropdownContainer = document.querySelector(".dropdown");
+        const dropdownMenu = document.querySelector(".content");
+
+        userBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('active');
+
+        })
+
+        document.addEventListener('click', (e) =>{
+        if (!dropdownMenu.contains(e.target)){
+            dropdownMenu.classList.remove('active');
+        }
+    });
+    });
+
+
+</script>
 </body>
 </html>

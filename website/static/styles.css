@@ -539,13 +539,31 @@ input[type=submit] {
     min-height: 130px;
   }
 }
-.user-btn {
+.dropdown .user-btn {
   background: none;
   border-style: solid;
 }
-.user-btn:hover {
+.dropdown .user-btn:hover {
   background-color: rgb(0, 136, 169);
+  cursor: pointer;
 }
-.user-btn:active {
+.dropdown .user-btn:active {
   opacity: 0.8;
+}
+
+.dropdown a {
+  display: block;
+  color: black;
+  text-decoration: none;
+  padding: 10px 15px;
+}
+.dropdown .content {
+  display: none;
+  right: 10px;
+  position: absolute;
+  background-color: #24252a;
+  min-width: 100px;
+}
+.dropdown .content.active {
+  display: block;
 }/*# sourceMappingURL=styles.css.map */
