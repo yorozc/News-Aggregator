@@ -10,6 +10,11 @@ routes = Blueprint('routes', __name__)
 def index():
     articles = parsed_articles()
 
+    # formats dates to Month Day, Year
+    for source, article in articles:
+        dt = parser.parse(article.published)
+        article.published = dt.strftime("%b %d, %Y")
+
     daily_debrief = articles[:5]
     rest_articles = articles[5:]
 
@@ -22,9 +27,6 @@ def index():
 
     total_pages = total_articles + per_page + 1
 
-    for source, article in articles:
-        dt = parser.parse(article.published)
-        article.published = dt.strftime("%b %d, %Y")
         
     if current_user.is_authenticated:
 
