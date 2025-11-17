@@ -502,6 +502,7 @@ input[type=submit] {
   display: flex;
   gap: 0.75rem;
   align-items: center;
+  justify-content: space-between;
   font-size: 0.9rem;
 }
 .debrief-meta .published {
@@ -569,20 +570,21 @@ input[type=submit] {
   display: block;
 }
 
-.right-side-meta .source-badge {
-  margin-right: 12px;
-}
-.right-side-meta .fa-heart {
+.fa-heart {
   font-size: 1.2rem;
   transition: transform 0.2s ease-in-out;
   color: black;
 }
-.right-side-meta .fa-heart:hover {
+.fa-heart:hover {
   color: red;
   transform: scale(1.15);
 }
-.right-side-meta .fa-heart:active {
+.fa-heart:active {
   opacity: 0.6;
+}
+
+.source-badge {
+  margin-right: 12px;
 }
 
 .save-article {
