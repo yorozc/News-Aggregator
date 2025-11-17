@@ -70,6 +70,7 @@ def sign_up():
                               "last_name": last_name,
                               "email": email,
                               "password": password,
+                              "saved_articles": [],
                             })
             doc = users.find_one({"email": email})
             flash("User created!", category="success")
