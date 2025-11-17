@@ -1,8 +1,9 @@
-from flask import render_template, redirect, Blueprint, url_for, flash, request, jsonify
+from flask import render_template, redirect, Blueprint, url_for, flash, request, jsonify, session
 from flask_login import login_required, current_user
 from dateutil import parser
-import json
+from bson import ObjectId
 from .rss_feeds import parsed_articles #dict of feeds
+from .db import users
 
 
 routes = Blueprint('routes', __name__)
@@ -51,16 +52,23 @@ def search():
 
     return render_template('search.html', articles=results, query=query)
 
+@login_required
 @routes.route("/save", methods=["POST"])
 def save():
 
     data = request.get_json()
     source = data.get('source')
     article = data.get('article')
+    print(current_user.id)
+    users.update_one(
+        {'_id': ObjectId(current_user.id)},
+        { '$push': {"saved_articles": (source, article)} }
+    )
 
 
     return jsonify({"message": f"Saved article from {source}"})
 
+@login_required
 @routes.route("/saved_articles")
 def saved_articles():
 
