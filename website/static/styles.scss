@@ -621,5 +621,24 @@ input[type=submit]{
     background: none;
 }
 
+#flash-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+}
+
+.flash-message {
+    width: 100%;
+    padding: 10px 20px;
+    color: black;
+    font-weight: 500;
+    animation: slideDown 0.3s ease;
+
+    &.success{ background-color: rgb(135, 252, 135, 0.8); }
+
+    &.error {background-color: rgb(245, 118, 118, 0.8); }
+}
 
 

@@ -23,7 +23,7 @@
     <div class="debrief-track" data-index="0">
         {% for entry in daily_debrief %}
         <article class="debrief-slide{% if loop.index0 == 0 %} is-active{% endif %}">
-            <a class="debrief-link" href="{{ entry.link }}" target="_blank" rel="noopener noreferrer">
+            <a class="debrief-link" href="{{ entry[1].link }}" target="_blank" rel="noopener noreferrer">
             <h3 class="debrief-title">{{ entry[1].title }}</h3>
             <div class="debrief-meta">
                 <time class="published">{{ entry[1].published }}</time>
@@ -69,6 +69,18 @@
 </main>
 
 <script>
+    function showFlash(message, status) {
+        const container = document.getElementById("flash-container");
+        const flash = document.createElement("div");
+        flash.className = `flash-message ${status}`;
+        flash.textContent = message;
+
+        container.appendChild(flash);
+
+        // remove after 3 seconds
+        setTimeout(() => flash.remove(), 3000);
+    }
+
     document.querySelectorAll(".save-article").forEach(btn => {btn.addEventListener('click', async () => {
         const source = btn.getAttribute('data-source');
         const article = btn.getAttribute('data-article');
@@ -80,8 +92,11 @@
         });
 
         const result = await response.json();
+
+        showFlash(result.message, result.status)
         });
     });
+    
 </script>
 
 

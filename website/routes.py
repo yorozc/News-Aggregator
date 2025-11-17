@@ -20,9 +20,6 @@ def index():
     daily_debrief = articles[:5]
     rest_articles = articles[5:]
 
-    print(daily_debrief)
-    print(rest_articles)
-
     page = request.args.get('page', 1, type=int)
     per_page =12
     total_articles = len(rest_articles)
@@ -58,15 +55,19 @@ def save():
 
     data = request.get_json()
     source = data.get('source')
-    article = data.get('article')
-    print(current_user.id)
-    users.update_one(
-        {'_id': ObjectId(current_user.id)},
-        { '$push': {"saved_articles": (source, article)} }
+    link = data.get('article')
+    user_id = ObjectId(current_user.id)
+
+    #check if article already exists
+    article_doc = users.update_one(
+        {'_id': user_id},
+        {'$addToSet': {"saved_articles": {"source": source, "link": link}}}
     )
+    
+    if article_doc.modified_count == 0:
+        return jsonify({"status": "error", "message": "Article is already saved"}), 200
 
-
-    return jsonify({"message": f"Saved article from {source}"})
+    return jsonify({"status": "success", "message": f"Saved article from {source}"}), 201
 
 @login_required
 @routes.route("/saved_articles")
