@@ -556,4 +556,18 @@ input[type=submit]{
   .debrief-track { min-height: 130px; }
 }
 
+.user-btn{
+    background: none;
+    border-style: solid;
+
+    &:hover{
+        background-color: $btn_color;
+    }
+
+    &:active{
+        opacity: 0.8;
+    }
+}
+
+
 
