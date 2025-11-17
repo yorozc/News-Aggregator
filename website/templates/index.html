@@ -24,17 +24,17 @@
         {% for entry in daily_debrief %}
         <article class="debrief-slide{% if loop.index0 == 0 %} is-active{% endif %}">
             <a class="debrief-link" href="{{ entry[1].link }}" target="_blank" rel="noopener noreferrer">
-            <h3 class="debrief-title">{{ entry[1].title }}</h3>
-            <div class="debrief-meta">
-                <time class="published">{{ entry[1].published }}</time>
-                <div debrief-meta-right>
-                    <span class="source-badge">{{ entry[0]}}</span>
-                <button class="save-article"
-                     data-source="{{entry[0]}}"
-                    data-article="{{entry[1].link}}"><i class="fas fa-heart"></i>
-                </button>
+                <h3 class="debrief-title">{{ entry[1].title }}</h3>
+                <div class="debrief-meta">
+                    <time class="published">{{ entry[1].published }}</time>
+                    <div>
+                        <span class="source-badge">{{ entry[0]}}</span>
+                        <button class="save-article"
+                            data-source="{{entry[0]}}"
+                            data-article="{{entry[1].link}}"><i class="fas fa-heart"></i>
+                        </button>
+                    </div>
                 </div>
-            </div>
             </a>
         </article>
         {% endfor %}
@@ -52,7 +52,9 @@
                     <div class="right-side-meta">
                         <span class="source-badge">{{ entry[0] }}</span>
                         {% if current_user.is_authenticated %}
-                            <button class="save-article" data-source="{{entry[0]}}"
+                            <button class="save-article"
+                            type="button" 
+                            data-source="{{entry[0]}}"
                             data-article="{{entry[1].link}}"><i class="fas fa-heart"></i>
                             </button>
                         {% endif %}
@@ -87,10 +89,12 @@
         setTimeout(() => flash.remove(), 3000);
     }
 
-    document.querySelectorAll(".save-article").forEach(btn => {btn.addEventListener('click', async () => {
+    document.querySelectorAll(".save-article").forEach(btn => {btn.addEventListener('click', async (e) => {
         const source = btn.getAttribute('data-source');
         const article = btn.getAttribute('data-article');
-
+        e.stopPropagation();
+        e.preventDefault();
+        
         const response = await fetch ('/save', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
