@@ -29,10 +29,12 @@
                     <time class="published">{{ entry[1].published }}</time>
                     <div>
                         <span class="source-badge">{{ entry[0]}}</span>
+                        {% if current_user.is_authenticated %}
                         <button class="save-article"
                             data-source="{{entry[0]}}"
                             data-article="{{entry[1].link}}"><i class="fas fa-heart"></i>
                         </button>
+                        {% endif %}
                     </div>
                 </div>
             </a>
