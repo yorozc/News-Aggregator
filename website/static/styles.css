@@ -559,7 +559,7 @@ input[type=submit] {
 }
 .dropdown .content {
   display: none;
-  right: 23px;
+  right: 24px;
   position: absolute;
   background-color: #24252a;
   min-width: 100px;
@@ -567,4 +567,16 @@ input[type=submit] {
 }
 .dropdown .content.active {
   display: block;
+}
+
+.right-side-meta .source-badge {
+  margin-right: 12px;
+}
+.right-side-meta .fa-heart {
+  font-size: 1.2rem;
+  transition: transform 0.2s ease-in-out;
+}
+.right-side-meta .fa-heart:hover {
+  color: red;
+  transform: scale(1.15);
 }/*# sourceMappingURL=styles.css.map */

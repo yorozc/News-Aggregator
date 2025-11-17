@@ -582,7 +582,7 @@ input[type=submit]{
 
     & .content{
         display: none;
-        right: 23px;
+        right: 24px;
         position: absolute;
         background-color: $bg_color;
         min-width: 100px;
@@ -591,6 +591,23 @@ input[type=submit]{
 
     & .content.active{
         display: block;
+    }
+}
+
+.right-side-meta{
+    
+    & .source-badge{
+        margin-right: 12px;
+    }
+
+    & .fa-heart{
+        font-size: 1.2rem;
+        transition: transform 0.2s ease-in-out;
+
+        &:hover{
+            color: red;
+            transform: scale(1.15);
+        }
     }
 }
 
