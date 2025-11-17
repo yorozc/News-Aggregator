@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // auto-rotate (every 4s), pause on hover & tab hidden
   const section = document.querySelector('.daily-debrief');
   let timer = null;
-  const start = () => { stop(); timer = setInterval(next, 4000); };
+  const start = () => { stop(); timer = setInterval(next, 6000); };
   const stop  = () => { if (timer) clearInterval(timer); timer = null; };
 
   section?.addEventListener('mouseenter', stop);
