@@ -1,13 +1,14 @@
 from flask import render_template, redirect, Blueprint, url_for, flash, request, session
 from flask_login import login_required, current_user
-from .rss_feeds import parse #dict of feeds
+from dateutil import parser
+from .rss_feeds import parsed_articles #dict of feeds
 
 
 routes = Blueprint('routes', __name__)
 
 @routes.route("/", methods=["GET", "POST"])
 def index():
-    articles = parse()
+    articles = parsed_articles()
 
     daily_debrief = articles[:5]
     rest_articles = articles[5:]
@@ -20,6 +21,10 @@ def index():
     paginated_articles = rest_articles[start:end]
 
     total_pages = total_articles + per_page + 1
+
+    for source, article in articles:
+        dt = parser.parse(article.published)
+        article.published = dt.strftime("%b %d, %Y")
         
     if current_user.is_authenticated:
 
@@ -34,7 +39,7 @@ def index():
 def search():
     query = request.args.get('q')
 
-    articles = parse()
+    articles = parsed_articles()
 
     results = [article for article in articles if query.lower() in article[1].title.lower()]
 

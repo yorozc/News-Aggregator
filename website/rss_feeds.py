@@ -7,7 +7,7 @@ rss_feeds = {
     'CNBC': 'https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839069'
 }
 
-def parse():
+def parsed_articles():
     articles = []
     for source, feed in rss_feeds.items():
         parsed_feed = feedparser.parse(feed)
