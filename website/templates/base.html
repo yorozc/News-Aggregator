@@ -92,5 +92,49 @@
     });
 
 </script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // existing menu script stays as-is
+
+  const track = document.querySelector('.debrief-track');
+  if (!track) return;
+
+  const slides = Array.from(track.querySelectorAll('.debrief-slide'));
+  if (slides.length === 0) return;
+
+  const dotsContainer = document.querySelector('.debrief-dots'); // optional if you added dots
+  const prevBtn = document.querySelector('.debrief-btn.prev');
+  const nextBtn = document.querySelector('.debrief-btn.next');
+
+  const getIndex = () => Number(track.dataset.index || 0);
+  const setIndex = (i) => { track.dataset.index = String(i); };
+
+  const show = (i) => {
+    slides.forEach(s => s.classList.remove('is-active'));
+    slides[i].classList.add('is-active');
+    setIndex(i);
+  };
+
+  const next = () => show((getIndex() + 1) % slides.length);
+  const prev = () => show((getIndex() - 1 + slides.length) % slides.length);
+
+  // controls
+  nextBtn?.addEventListener('click', next);
+  prevBtn?.addEventListener('click', prev);
+
+  // auto-rotate (every 4s), pause on hover & tab hidden
+  const section = document.querySelector('.daily-debrief');
+  let timer = null;
+  const start = () => { stop(); timer = setInterval(next, 4000); };
+  const stop  = () => { if (timer) clearInterval(timer); timer = null; };
+
+  section?.addEventListener('mouseenter', stop);
+  section?.addEventListener('mouseleave', start);
+  document.addEventListener('visibilitychange', () => { document.hidden ? stop() : start(); });
+
+  start();
+});
+</script>
+
 </body>
 </html>

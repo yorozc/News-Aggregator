@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   box-sizing: border-box;
 }
@@ -250,4 +251,291 @@ input[type=submit] {
 }
 .alert.alert-success {
   background-color: rgba(135, 252, 135, 0.8);
+}
+
+#intro {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.page-container {
+  max-width: 1500px; /* keep it narrow and centered */
+  margin: 0 auto;
+  padding: 1rem clamp(1rem, 3vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* take up full viewport height */
+  box-sizing: border-box;
+}
+
+/* ---------- Articles Grid ---------- */
+.articles {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(0.8rem, 2vw, 1.25rem);
+  align-items: start;
+  margin-top: 1rem;
+}
+
+.articles article,
+.article-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  padding: 1rem 1rem 0.9rem;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  display: flex;
+  flex-direction: column;
+  min-height: 120px;
+}
+.articles article:hover, .articles article:focus-within,
+.article-card:hover,
+.article-card:focus-within {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Title */
+.article-title,
+.articles article h2 {
+  margin: 0 0 0.6rem;
+  font-size: clamp(1.05rem, 2.2vw, 1.2rem);
+  line-height: 1.25;
+}
+.article-title a,
+.articles article h2 a {
+  color: #111;
+  text-decoration: none;
+  display: inline-block;
+  /* Two-line clamp for long headlines */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.article-title a:hover, .article-title a:focus,
+.articles article h2 a:hover,
+.articles article h2 a:focus {
+  text-decoration: underline;
+  outline: none;
+}
+
+/* Meta row: date + source badge */
+.article-meta,
+.articles article .article-meta {
+  margin-top: auto; /* push meta to bottom for consistent height */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  padding-top: 0.65rem;
+}
+
+.published {
+  font-size: 0.85rem;
+  color: #666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* “Source” as a subtle chip */
+.source-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #0a2b33;
+  background: rgba(0, 136, 169, 0.12);
+  border: 1px solid rgba(0, 136, 169, 0.28);
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  max-width: 60%;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---------- Pagination ---------- */
+.pagination {
+  margin: 1.5rem 0 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+}
+.pagination a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 98px;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: #fff;
+  color: #111;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.08s ease;
+}
+.pagination a:hover {
+  background: #f6f8f9;
+  border-color: rgba(0, 0, 0, 0.16);
+}
+.pagination a:active {
+  transform: translateY(1px);
+}
+
+@media (max-width: 480px) {
+  .articles {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+  }
+  .article-title,
+  .articles article h2 {
+    font-size: 1.05rem;
+  }
+  .published {
+    font-size: 0.8rem;
+  }
+  .source-badge {
+    max-width: 50%;
+  }
+}
+/* ---------- Daily Debrief (Hero Slider) ---------- */
+.daily-debrief {
+  max-width: 100%;
+  margin: 1rem 0;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  z-index: 1;
+}
+
+.debrief-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+}
+.debrief-header h2 {
+  margin: 0;
+  font-size: clamp(1.25rem, 3vw, 1.6rem);
+  letter-spacing: 0.2px;
+  color: #fffefe;
+}
+
+.debrief-controls {
+  display: flex;
+  gap: 0.4rem;
+}
+.debrief-controls .debrief-btn {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: #fff;
+  border-radius: 10px;
+  width: 38px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.08s ease;
+}
+.debrief-controls .debrief-btn:hover {
+  background: #f4f6f7;
+}
+.debrief-controls .debrief-btn:active {
+  transform: translateY(1px);
+}
+.debrief-controls .debrief-btn i {
+  font-size: 14px;
+  color: #111;
+}
+
+.debrief-track {
+  position: relative;
+  overflow: hidden;
+  min-height: clamp(120px, 10vw, 160px);
+}
+
+.debrief-slide {
+  /* stacked slides; we fade/slide the active one in */
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(6px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.debrief-slide.is-active {
+  position: relative; /* becomes the only visible one */
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.debrief-link {
+  display: block;
+  width: 100%;
+  padding: clamp(0.5rem, 1.6vw, 0.9rem);
+  border-radius: 12px;
+  text-decoration: none;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0));
+}
+
+.debrief-title {
+  margin: 0 0 0.5rem 0;
+  font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+  line-height: 1.25;
+  color: #111;
+  /* clamp to 3 lines */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.debrief-meta {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  font-size: 0.9rem;
+}
+.debrief-meta .published {
+  color: #666;
+}
+
+.debrief-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.35rem;
+  margin-top: 0.6rem;
+}
+.debrief-dots .debrief-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  border: 0;
+  background: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.1s ease, background 0.15s ease;
+}
+.debrief-dots .debrief-dot.is-active {
+  background: rgb(0, 136, 169);
+  transform: scale(1.2);
+}
+
+/* Make the debrief section visually larger than cards */
+.daily-debrief + .articles {
+  margin-top: clamp(0.6rem, 1.5vw, 1rem);
+}
+
+/* small screens */
+@media (max-width: 480px) {
+  .debrief-track {
+    min-height: 130px;
+  }
 }/*# sourceMappingURL=styles.css.map */

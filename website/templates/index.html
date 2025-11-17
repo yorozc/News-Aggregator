@@ -6,35 +6,68 @@
 
 {% block body %}
 
-{% if current_user.is_authenticated and name != ""%}
-<div>
-    <p>Welcome, {{ name | capitalize}}</p>
-</div>
-{% endif %}
+<main class="page-container">
+    {% if current_user.is_authenticated and name != ""%}
+        <div>
+            <p id="intro">Welcome, {{ name | capitalize}}</p>
+        </div>
+    {% endif %}
 
-<div class="articles">
-    {% for article in articles %}
-        <article class="article-card">
-            <h2>
-                <a href="{{ article[1].link }}" target="_blank">{{ article[1].title }}
-                </a>
-            </h2>
-            <div class="article-meta">
-                <p>{{ article[1].published }}</p>
-                <p>Source: {{ article[0]  }}</p>
+    <section class="daily-debrief" aria-label="Daily Debrief">
+        <header class="debrief-header">
+            <h2>Daily Debrief</h2>
+            <div class="debrief-controls" role="group" aria-label="Debrief controls">
+            <button class="debrief-btn prev" aria-label="Previous article" type="button">
+                <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+            </button>
+            <button class="debrief-btn next" aria-label="Next article" type="button">
+                <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+            </button>
             </div>
-            
-        </article>
-    {% endfor %}
-</div>
-<div class="pagination">
-    {% if page > 1 %}
-        <a href="{{ url_for('routes.index', page=page-1)}}">Previous</a>
-    {% endif %}
+        </header>
 
-    {% if page < total_pages %}
-        <a href="{{ url_for('routes.index', page=page+1)}}">Next</a>
-    {% endif %}
-</div>
+    <div class="debrief-track" data-index="0">
+        {% for entry in daily_debrief %}
+        {# entry is (source, article) like your main list #}
+        <article class="debrief-slide{% if loop.index0 == 0 %} is-active{% endif %}">
+            <a class="debrief-link" href="{{ entry[1].link }}" target="_blank" rel="noopener noreferrer">
+            <h3 class="debrief-title">{{ entry[1].title }}</h3>
+            <div class="debrief-meta">
+                <time class="published">{{ entry[1].published }}</time>
+                <span class="source-badge">{{ entry[0] }}</span>
+            </div>
+            </a>
+        </article>
+        {% endfor %}
+    </div>
+
+    <div class="articles">
+        {% for article in articles %}
+            <article class="article-card">
+                <h2>
+                    <a href="{{ article[1].link }}" target="_blank">{{ article[1].title }}
+                    </a>
+                </h2>
+                <div class="article-meta">
+                    <p>{{ article[1].published }}</p>
+                    <p>Source: {{ article[0]  }}</p>
+                </div>
+                
+            </article>
+        {% endfor %}
+    </div>
+    <div class="pagination">
+        {% if page > 1 %}
+            <a href="{{ url_for('routes.index', page=page-1)}}">Previous</a>
+        {% endif %}
+
+        {% if page < total_pages %}
+            <a href="{{ url_for('routes.index', page=page+1)}}">Next</a>
+        {% endif %}
+    </div>
+
+</main>
+
+
 
 {% endblock %}
