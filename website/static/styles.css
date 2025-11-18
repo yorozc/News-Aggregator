@@ -579,10 +579,25 @@ input[type=submit] {
   display: block;
 }
 
+.fa-trash-can {
+  background: none;
+  border: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  color: #24252a;
+  font-size: 1.2rem;
+  transition: transform 0.2s ease-in-out;
+}
+.fa-trash-can:hover {
+  color: rgb(0, 136, 169);
+  transform: scale(1.15);
+}
+
 .fa-heart {
   font-size: 1.2rem;
   transition: transform 0.2s ease-in-out;
-  color: black;
+  color: #24252a;
 }
 .fa-heart:hover {
   color: red;
@@ -596,7 +611,7 @@ input[type=submit] {
   margin-right: 12px;
 }
 
-.save-article {
+.save-article, .delete-article {
   border: none;
   background: none;
 }

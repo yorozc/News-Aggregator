@@ -14,16 +14,14 @@
                 </a>
             </h2>
             <div class="article-meta">
-                <div class="right-side-meta">
-                    <span class="source-badge">{{ entry.source }}</span>
-                    {% if current_user.is_authenticated %}
-                        <button class="delete-article"
-                            type="button" 
-                            data-title="{{ entry.title }}"
-                            data-article="{{ entry.link }}"><i class="fas fa-trash-can"></i>
-                            </button>
-                    {% endif %}
-                </div>
+                <span class="source-badge">{{ entry.source }}</span>
+                {% if current_user.is_authenticated %}
+                    <button class="delete-article"
+                        type="button" 
+                        data-title="{{ entry.title }}"
+                        data-article="{{ entry.link }}"><i class="fas fa-trash-can"></i>
+                        </button>
+                {% endif %}
             </div>
             
         </article>

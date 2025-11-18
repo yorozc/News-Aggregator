@@ -607,13 +607,24 @@ input[type=submit]{
 }
 
 .fa-trash-can{
-  
+  background: none;
+  border: none;
+  appearance: none;
+  color: $bg_color;
+  font-size: 1.2rem;
+  transition: transform 0.2s ease-in-out;
+
+  &:hover{
+    color: $btn_color;
+    transform: scale(1.15);
+  }
+
 }
 
 .fa-heart{
         font-size: 1.2rem;
         transition: transform 0.2s ease-in-out;
-        color: black;
+        color: $bg_color;
 
         &:hover{
             color: red;
@@ -629,7 +640,7 @@ input[type=submit]{
     margin-right: 12px;
 }
 
-.save-article{
+.save-article, .delete-article{
     border: none;
     background: none;
 }
