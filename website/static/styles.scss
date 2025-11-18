@@ -281,12 +281,21 @@ input[type=submit]{
 
 
 .page-container {
-  max-width: 1500px;           /* keep it narrow and centered */
+  max-width: 1200px;           /* keep it narrow and centered */
   margin: 0 auto;
   padding: 1rem clamp(1rem, 3vw, 2rem);
   display: flex;
   flex-direction: column;
   min-height: 100vh;           /* take up full viewport height */
+  box-sizing: border-box;
+}
+
+.saved-container{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem clamp(1rem, 3vw, 2rem);
+  display: flex;
+  flex-direction: column;
   box-sizing: border-box;
 }
 /* ---------- Articles Grid ---------- */

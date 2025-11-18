@@ -5,9 +5,27 @@
 {% endblock %}
 
 {% block body %}
-<div class="articles">
+<main class="saved-container">
+    <div class="articles">
     {% for entry in articles %}
-        <p>{{entry}}</p>
-    {% endfor %}
-</div>
+        <article class="article-card">
+            <h2>
+                <a href="{{ entry.link }}" target="_blank">{{ entry.title }}
+                </a>
+            </h2>
+            <div class="article-meta">
+                <div class="right-side-meta">
+                    <span class="source-badge">{{ entry.source }}</span>
+                    {% if current_user.is_authenticated %}
+                        
+                    {% endif %}
+                </div>
+            </div>
+            
+        </article>
+        {% endfor %}
+    </div>
+
+</main>
+
 {% endblock %}

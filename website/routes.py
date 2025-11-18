@@ -78,6 +78,7 @@ def saved_articles():
     doc = users.find_one({'_id': user_id})
 
     if doc:
+        part_article = []
         arr = doc.get('saved_articles')
         print(arr)
         print('EVERYTHING PRINTED')
