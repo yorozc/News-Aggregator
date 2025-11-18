@@ -39,5 +39,37 @@
     </div>
 
 </main>
+<script>
+    function showFlash(message, status) {
+        const container = document.getElementById("flash-container");
+        const flash = document.createElement("div");
+        flash.className = `flash-message ${status}`;
+        flash.textContent = message;
 
+        container.appendChild(flash);
+
+        // remove after 3 seconds
+        setTimeout(() => flash.remove(), 3000);
+    }
+
+    document.querySelectorAll(".save-article").forEach(btn => {btn.addEventListener('click', async (e) => {
+        const source = btn.getAttribute('data-source');
+        const title = btn.getAttribute('data-title');
+        const article = btn.getAttribute('data-article');
+        e.stopPropagation();
+        e.preventDefault();
+        
+        const response = await fetch ('/save', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({source, title, article})
+        });
+
+        const result = await response.json();
+
+        showFlash(result.message, result.status)
+        });
+    });
+    
+</script>
 {% endblock %}
