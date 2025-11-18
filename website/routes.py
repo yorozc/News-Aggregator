@@ -55,13 +55,14 @@ def save():
 
     data = request.get_json()
     source = data.get('source')
+    title = data.get('title')
     link = data.get('article')
     user_id = ObjectId(current_user.id)
 
     #check if article already exists
     article_doc = users.update_one(
         {'_id': user_id},
-        {'$addToSet': {"saved_articles": {"source": source, "link": link}}}
+        {'$addToSet': {"saved_articles": {"source": source, "title": title, "link": link}}}
     )
     
     if article_doc.modified_count == 0:
@@ -72,5 +73,15 @@ def save():
 @login_required
 @routes.route("/saved_articles")
 def saved_articles():
+    user_id = ObjectId(current_user.id)
 
-    return render_template("saved_articles.html")
+    doc = users.find_one({'_id': user_id})
+
+    if doc:
+        arr = doc.get('saved_articles')
+        print(arr)
+        print('EVERYTHING PRINTED')
+    else: 
+        pass
+
+    return render_template("saved_articles.html", articles=arr)

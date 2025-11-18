@@ -32,6 +32,7 @@
                         {% if current_user.is_authenticated %}
                         <button class="save-article"
                             data-source="{{entry[0]}}"
+                            data-title="{{entry[1].title}}"
                             data-article="{{entry[1].link}}"><i class="fas fa-heart"></i>
                         </button>
                         {% endif %}
@@ -57,7 +58,8 @@
                             <button class="save-article"
                             type="button" 
                             data-source="{{entry[0]}}"
-                            data-article="{{entry[1].link}}"><i class="fas fa-heart"></i>
+                            data-title="{{ entry[1].title }}"
+                            data-article="{{ entry[1].link }}"><i class="fas fa-heart"></i>
                             </button>
                         {% endif %}
                     </div>
@@ -93,6 +95,7 @@
 
     document.querySelectorAll(".save-article").forEach(btn => {btn.addEventListener('click', async (e) => {
         const source = btn.getAttribute('data-source');
+        const title = btn.getAttribute('data-title');
         const article = btn.getAttribute('data-article');
         e.stopPropagation();
         e.preventDefault();
@@ -100,7 +103,7 @@
         const response = await fetch ('/save', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({source, article})
+            body: JSON.stringify({source, title, article})
         });
 
         const result = await response.json();
