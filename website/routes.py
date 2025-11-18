@@ -45,6 +45,10 @@ def search():
 
     articles = parsed_articles()
 
+    for source, article in articles:
+        dt = parser.parse(article.published)
+        article.published = dt.strftime("%b %d, %Y")
+
     results = [article for article in articles if query.lower() in article[1].title.lower()]
 
     return render_template('search.html', articles=results, query=query)
@@ -78,10 +82,7 @@ def saved_articles():
     doc = users.find_one({'_id': user_id})
 
     if doc:
-        part_article = []
-        arr = doc.get('saved_articles')
-        print(arr)
-        print('EVERYTHING PRINTED')
+        arr = doc.get('saved_articles') #creates dict of saved articles
     else: 
         pass
 
