@@ -84,6 +84,26 @@ def saved_articles():
     if doc:
         arr = doc.get('saved_articles') #creates dict of saved articles
     else: 
-        pass
+        print('Doc not found')
 
     return render_template("saved_articles.html", articles=arr)
+
+@login_required
+@routes.route("/delete", methods=["DELETE"])
+def delete(): # deletes selected articles
+    user_id = ObjectId(current_user.id)
+
+    data = request.get_json()
+    link = data.get('article')
+
+    result = users.update_one(
+        {'_id': user_id},
+        {'$pull': {'saved_articles': {'link': link}}}
+    )
+
+    if result.modified_count == 0:
+        return jsonify({"status": "error", "message": f"Article not found!"})
+
+    return jsonify({"status": "success", "message": f"Article deleted!"}), 201
+
+

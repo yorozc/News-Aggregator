@@ -17,7 +17,11 @@
                 <div class="right-side-meta">
                     <span class="source-badge">{{ entry.source }}</span>
                     {% if current_user.is_authenticated %}
-                        
+                        <button class="delete-article"
+                            type="button" 
+                            data-title="{{ entry.title }}"
+                            data-article="{{ entry.link }}"><i class="fas fa-trash-can"></i>
+                            </button>
                     {% endif %}
                 </div>
             </div>
@@ -27,5 +31,43 @@
     </div>
 
 </main>
+<script>
+    function showFlash(message, status) {
+        const container = document.getElementById("flash-container");
+        const flash = document.createElement("div");
+        flash.className = `flash-message ${status}`;
+        flash.textContent = message;
 
+        container.appendChild(flash);
+
+        // remove after 3 seconds
+        setTimeout(() => flash.remove(), 3000);
+    }
+
+    document.querySelectorAll(".delete-article").forEach(btn => {btn.addEventListener('click', async (e) => {
+        
+        e.stopPropagation();
+        e.preventDefault();
+        const article = btn.getAttribute('data-article');
+        const card = btn.closest(".article-card");
+        btn.disabled = true;
+    
+        const response = await fetch ('/delete', {
+            method: 'DELETE',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({article})
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.status === "success") {
+            // remove the card from the DOM
+            card?.remove();
+            showFlash(result.message, "success");
+        }
+        
+        });
+    });
+    
+</script>
 {% endblock %}
