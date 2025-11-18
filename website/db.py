@@ -11,7 +11,7 @@ client = MongoClient(
     uri,
     TLS=True,
     tlsCAFile=certifi.where(),
-    serverSelectionTimeoutMS=30000,
+    serverSelectionTimeoutMS=8000,
                      )
 
 db = client["newsUsers"]
