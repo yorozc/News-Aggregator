@@ -2,6 +2,7 @@ from collections import UserDict
 import email
 from os import error
 from sre_constants import SUCCESS
+from types import MethodDescriptorType
 from bson import ObjectId
 from flask import render_template, redirect, Blueprint, url_for, flash, request, jsonify, session
 from flask_login import login_required, current_user
@@ -64,11 +65,16 @@ def edit_email():
             
         try:
             users.update_one({'_id': user_id}, {'$set':{'email': edited_email}})
+            
             flash('Email changed!', category="success")
 
         except Exception as e:
             print(f"Email could not be updated!\nError: {e}")
 
     return redirect(url_for("settings.user_settings"))
+
+@settings.route("change_password", methods=["POST"])
+def change_password():
+    pass
 
 
