@@ -7,5 +7,5 @@ settings = Blueprint('settings', __name__)
 @settings.route("/settings", methods=["GET", "POST"])
 def user_settings():
 
-    return render_template("settings.html")
+    return render_template("settings.html", name=current_user.username)
 

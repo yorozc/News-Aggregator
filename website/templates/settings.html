@@ -5,5 +5,10 @@
 {% endblock %}
 
 {% block body %}
-
+    {% if name | length != 0%}
+        <h1>Welcome {{ name }}</h1>
+    {% else %}
+        <h1>Settings</h1>
+    {% endif %}
+    
 {% endblock %}
