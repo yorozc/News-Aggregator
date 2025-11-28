@@ -1,8 +1,9 @@
+from getpass import getuser
 from flask import render_template, redirect, Blueprint, url_for, flash, request, session
 from flask_login import login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash 
 from .User import User 
-from.db import users 
+from.db import get_users_collection
 
 auth = Blueprint('auth', __name__)
 
@@ -19,6 +20,7 @@ def login():
         session["email"] = email
 
         #find match for email in db
+        users = get_users_collection()
         doc = users.find_one({"email": email})
 
         # if it returns a match
@@ -56,6 +58,7 @@ def sign_up():
         session["email"] = email
 
         # checks if email already exists
+        users = get_users_collection()
         doc = users.find_one({"email": email}) 
         if doc:
             print("Email already in use!")

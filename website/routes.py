@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 from dateutil import parser
 from bson import ObjectId
 from .rss_feeds import parsed_articles #dict of feeds
-from .db import users
+from .db import get_users_collection
 
 
 routes = Blueprint('routes', __name__)
@@ -64,6 +64,7 @@ def save():
     user_id = ObjectId(current_user.id)
 
     #check if article already exists
+    users = get_users_collection()
     article_doc = users.update_one(
         {'_id': user_id},
         {'$addToSet': {"saved_articles": {"source": source, "title": title, "link": link}}}
@@ -78,7 +79,7 @@ def save():
 @routes.route("/saved_articles")
 def saved_articles():
     user_id = ObjectId(current_user.id)
-
+    users = get_users_collection()
     doc = users.find_one({'_id': user_id})
 
     if doc:
@@ -95,7 +96,8 @@ def delete(): # deletes selected articles
 
     data = request.get_json()
     link = data.get('article')
-
+    
+    users = get_users_collection()
     result = users.update_one(
         {'_id': user_id},
         {'$pull': {'saved_articles': {'link': link}}}

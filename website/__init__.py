@@ -5,7 +5,7 @@ from bson import ObjectId
 import os 
 from .routes import routes 
 from .auth import auth 
-from .db import users 
+from .db import get_users_collection
 from .User import User 
 
 def create_app():
@@ -32,7 +32,7 @@ def create_app():
 
         except Exception:
             return None
-        
+        users = get_users_collection()
         doc = users.find_one({"_id": _id})
         return User(doc) if doc else None
 

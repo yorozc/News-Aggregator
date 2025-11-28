@@ -1,25 +1,27 @@
 from pymongo import MongoClient
-import certifi 
-from dotenv import load_dotenv
+from pymongo.errors import ConfigurationError
+from functools import lru_cache
+import certifi
 import os
 
-load_dotenv()
+def _uri():
+    uri = os.getenv("MONGODB_URI")
+    if not uri:
+        raise ConfigurationError("MONGODB_URI not set")
+    return uri
 
-uri = os.getenv("MONGODB_URI")
+@lru_cache(maxsize=1)
+def get_client() -> MongoClient:
+    # Created the first time a worker uses it (safe after fork)
+    return MongoClient(
+        _uri(),
+        tls=True,
+        tlsCAFile=certifi.where(),
+        serverSelectionTimeoutMS=8000,
+    )
 
-client = MongoClient(
-    uri,
-    TLS=True,
-    tlsCAFile=certifi.where(),
-    serverSelectionTimeoutMS=8000,
-                     )
+def get_db():
+    return get_client()["newsUsers"]
 
-db = client["newsUsers"]
-users = db["users"] # creates collection if doesn't exist
-
-# Send a ping to confirm a successful connection
-try:
-    client.admin.command('ping')
-    print("Pinged your deployment. You successfully connected to MongoDB!")
-except Exception as e:
-    print(e)
+def get_users_collection():
+    return get_db()["users"]
