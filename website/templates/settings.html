@@ -16,7 +16,18 @@
 
         <div class="options"> <!-- holds what the user can change. Passwords, etc. -->
             <h2>Account Information</h2>
-            <div></div>
+            <div id="change-name">
+                <p>Change Account Name</p>
+                {{ name | capitalize}}
+            </div>
+            <div id="change-email">
+                <p>Change Email</p>
+                {{ email }}
+            </div>
+            <div id="change-password">
+                <p>Change Password</p>
+                {{ password }}
+            </div>
         </div>
 
     </div>
