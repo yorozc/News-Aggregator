@@ -9,7 +9,7 @@
 
     <div class="settings-container">
         {% if name | length != 0%}
-        <h1>Welcome {{ name }}</h1>
+        <h1>Welcome {{ name | capitalize}}</h1>
         {% else %}
             <h1>Settings</h1>
         {% endif %}
@@ -27,7 +27,14 @@
             </div>
             <div id="change-email">
                 <p>Change Email</p>
-                {{ email }}
+                <button class="change_email_Btn">Change Email</button>
+                <form action="/edit_email" method="post" id="edit_email_form" style="display: none;">
+                    <input type="email" name="email" id="edit_email" required/>
+                    <input type="submit" value="Edit Email" id="btn_edit_email" />
+                </form>
+                <div>
+                    {{ email }}
+                </div>
             </div>
             <div id="change-password">
                 <p>Change Password</p>
@@ -42,6 +49,13 @@
 
         change_name_btn.addEventListener('click', () => {
             edit_name_form.style.display = 'block'
+        })
+
+        change_email_btn = document.querySelector(".change_email_Btn")
+        edit_email_form = document.getElementById("edit_email_form")
+
+        change_email_btn.addEventListener('click', () => {
+            edit_email_form.style.display = 'block'
         })
     </script>
 {% endblock %}
