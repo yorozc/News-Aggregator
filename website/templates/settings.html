@@ -1,14 +1,23 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<title>Settings</title>
+    <title>Settings</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='settings.css')}}">
 {% endblock %}
 
 {% block body %}
-    {% if name | length != 0%}
+
+    <div class="settings-container">
+        {% if name | length != 0%}
         <h1>Welcome {{ name }}</h1>
-    {% else %}
-        <h1>Settings</h1>
-    {% endif %}
-    
+        {% else %}
+            <h1>Settings</h1>
+        {% endif %}
+
+        <div class="options"> <!-- holds what the user can change. Passwords, etc. -->
+            <h2>Account Information</h2>
+            <div></div>
+        </div>
+
+    </div>
 {% endblock %}
