@@ -18,7 +18,12 @@
             <h2>Account Information</h2>
             <div id="change-name">
                 <p>Change Account Name</p>
-                {{ name | capitalize}}
+                <button class="change_name_Btn">Change name</button>
+                <form action="/edit_name" method="post" id="edit_name_form" style="display: none;">
+                    <input type="text" name="name" id="username" required/>
+                    <input type="submit" value="Edit name" id="btn_edit_name" />
+                </form>
+                <div>{{ name | capitalize}}</div>
             </div>
             <div id="change-email">
                 <p>Change Email</p>
@@ -31,4 +36,12 @@
         </div>
 
     </div>
+    <script>
+        change_name_btn = document.querySelector(".change_name_Btn")
+        edit_name_form = document.getElementById("edit_name_form")
+
+        change_name_btn.addEventListener('click', () => {
+            edit_name_form.style.display = 'block'
+        })
+    </script>
 {% endblock %}

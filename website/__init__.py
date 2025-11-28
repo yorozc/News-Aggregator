@@ -17,8 +17,6 @@ def create_app():
     app.register_blueprint(routes, url_prefix="/")
     app.register_blueprint(auth, url_prefix="/")
     app.register_blueprint(settings, url_prefix="/")
-    
-
 
     app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "dev-key")
     app.config["SESSION_COOKIE_SECURE"] = False #change true when deploy
