@@ -96,7 +96,7 @@ def delete(): # deletes selected articles
 
     data = request.get_json()
     link = data.get('article')
-    
+
     users = get_users_collection()
     result = users.update_one(
         {'_id': user_id},
@@ -107,5 +107,4 @@ def delete(): # deletes selected articles
         return jsonify({"status": "error", "message": f"Article not found!"})
 
     return jsonify({"status": "success", "message": f"Article deleted!"}), 201
-
 
