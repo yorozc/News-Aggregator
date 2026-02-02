@@ -35,7 +35,7 @@ def edit_name():
             flash('Account name changed!', category="success")
 
         except Exception as e:
-            print(f"Name could not be updated!\nError: {e}")
+            flash(f'Account name could not be changed: {e}')
 
     return redirect(url_for("settings.user_settings"))
 
@@ -75,6 +75,12 @@ def edit_email():
 
 @settings.route("change_password", methods=["POST"])
 def change_password():
-    pass
+    if request.method == "POST":
+        curr_psswd = request.form["curr_password"]
+        # take curr psswd and check if it is the same in db 
+        # if so allow user to change password
+        pass
+
+    return redirect(url_for("settings.user_settings"))
 
 

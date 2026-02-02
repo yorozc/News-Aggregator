@@ -38,24 +38,47 @@
             </div>
             <div id="change-password">
                 <p>Change Password</p>
-                {{ password }}
+                <button class="change_password_btn">Change Password</button>
+                <!--Ask for current password, if correct allow password to be changed-->
+                <form action="/change_password" method="post" id="change_psswd_form" style="display: none;">
+                    <!--check if curr password is same as in db-->
+                    <label for="curr_password">Enter current password: </label>
+                    <input type="password" name="curr_password" id="change_password" required/>
+                </form>
             </div>
         </div>
 
     </div>
     <script>
-        change_name_btn = document.querySelector(".change_name_Btn")
-        edit_name_form = document.getElementById("edit_name_form")
+        function toggleDisplay(displayElement) {
+            
+            if (displayElement.style.display == 'none') {
+                displayElement.style.display = 'block';
+            }
+            else {
+                displayElement.style.display = 'none';
+            }
+        }
+        // fix this so it isnt so ugly later
+        change_name_btn = document.querySelector(".change_name_Btn");
+        edit_name_form = document.getElementById("edit_name_form");
+        change_email_btn = document.querySelector(".change_email_Btn");
+        edit_email_form = document.getElementById("edit_email_form");
+        change_psswd_btn = document.querySelector(".change_password_btn");
+        change_psswd_form = document.getElementById("change_psswd_form");
 
         change_name_btn.addEventListener('click', () => {
-            edit_name_form.style.display = 'block'
+            toggleDisplay(edit_name_form)
         })
-
-        change_email_btn = document.querySelector(".change_email_Btn")
-        edit_email_form = document.getElementById("edit_email_form")
 
         change_email_btn.addEventListener('click', () => {
-            edit_email_form.style.display = 'block'
+            toggleDisplay(edit_email_form)
         })
+
+        change_psswd_btn.addEventListener('click', () => {
+            toggleDisplay(change_psswd_form)
+        })
+
+
     </script>
 {% endblock %}
