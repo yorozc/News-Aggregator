@@ -77,17 +77,24 @@ def edit_email():
 @settings.route("change_password", methods=["POST"])
 def change_password():
     if request.method == "POST":
-        edited_psswd = request.form["curr_password"]
+        edited_psswd = request.form["new_password"]
+        current_psswd = request.form["curr_password"]
         users = get_users_collection()
         user_id = ObjectId(current_user.id)
-        curr_psswd = users.find_one({'_id':user_id})
+        curr_user = users.find_one({'_id':user_id})
 
-        if curr_psswd: # if anything is returned
-            curr_psswd = curr_psswd["password"]
-            if check_password_hash(curr_psswd, edited_psswd):
-        # take curr psswd and check if it is the same in db 
+        if curr_user: # if user is returned
+            # take new psswd and check if it is the same in db 
+            curr_psswd_in_db = curr_user["password"]
+            if not check_password_hash(curr_psswd_in_db, current_psswd):
+                flash("Old password does not match what was inputted for current password!", category='error')
+                return redirect(url_for("settings.user_settings"))
+
+            elif check_password_hash(curr_psswd_in_db, edited_psswd):
+        
                 flash("You are already using that password!", category='error')
-
+                return redirect(url_for("settings.user_settings"))
+            
         else:
             flash("User not found!", category='error')
 
@@ -96,14 +103,10 @@ def change_password():
             # prompt user to see if they really want to change psswd
             users.update_one({'_id': user_id}, {'$set': {'password': generate_password_hash(edited_psswd)}})
             flash('Password successfully changed!', category='success')
+            
 
         except EXCEPTION as e:
             flash(f"Password could not be updated!\nError: {e}", category='error')
-
-
-
-        # if so allow user to change password
-        pass
 
     return redirect(url_for("settings.user_settings"))
 
