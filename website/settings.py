@@ -49,17 +49,16 @@ def edit_email():
 
         current_email = users.find_one({'_id':user_id})["email"]
 
-        existing_user = users.find_one({'email': edited_email})
-        existing_email = ''
+        existing_email = users.find_one({'email': edited_email})
 
-        if existing_user:
-            existing_email = existing_user["email"]
+        if existing_email:
+            existing_email = existing_email["email"]
 
         if existing_email == current_email:
             flash('This is already your email!', category="error")
             return redirect(url_for("settings.user_settings"))
         
-        elif existing_email:
+        elif existing_email != None:
             flash(f"Email {existing_email} is already taken!", category="error")
             return redirect(url_for("settings.user_settings"))
             
