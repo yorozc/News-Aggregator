@@ -53,6 +53,7 @@ def sign_up():
         first_name = request.form['first_name']
         last_name = request.form['last_name']
         email = request.form['email']
+        #TODO: change this to check formatting
         password = generate_password_hash(request.form['password'], method='pbkdf2:sha256')
         
         session["email"] = email
@@ -66,6 +67,7 @@ def sign_up():
             return redirect(url_for("auth.login"))
         
         #TODO: use regex to check email formats
+        #TODO: use regex to check password
 
         # creates new user in db
         try:
