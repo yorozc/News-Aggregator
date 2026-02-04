@@ -2,11 +2,13 @@ from collections import UserDict
 import email
 from os import error
 from sre_constants import SUCCESS
+from tabnanny import check
+from tkinter import EXCEPTION
 from types import MethodDescriptorType
 from bson import ObjectId
 from flask import render_template, redirect, Blueprint, url_for, flash, request, jsonify, session
 from flask_login import login_required, current_user
-from werkzeug.security import check_password_hash
+from werkzeug.security import check_password_hash, generate_password_hash
 
 from website.auth import login
 from .db import get_users_collection
@@ -75,8 +77,31 @@ def edit_email():
 @settings.route("change_password", methods=["POST"])
 def change_password():
     if request.method == "POST":
-        curr_psswd = request.form["curr_password"]
+        edited_psswd = request.form["curr_password"]
+        users = get_users_collection()
+        user_id = ObjectId(current_user.id)
+        curr_psswd = users.find_one({'_id':user_id})
+
+        if curr_psswd: # if anything is returned
+            curr_psswd = curr_psswd["password"]
+            if check_password_hash(curr_psswd, edited_psswd):
         # take curr psswd and check if it is the same in db 
+                flash("You are already using that password!", category='error')
+
+        else:
+            flash("User not found!", category='error')
+
+        # if it goes through every check
+        try:
+            # prompt user to see if they really want to change psswd
+            users.update_one({'_id': user_id}, {'$set': {'password': generate_password_hash(edited_psswd)}})
+            flash('Password successfully changed!', category='success')
+
+        except EXCEPTION as e:
+            flash(f"Password could not be updated!\nError: {e}", category='error')
+
+
+
         # if so allow user to change password
         pass
 
