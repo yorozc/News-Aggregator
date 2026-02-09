@@ -84,7 +84,6 @@ def change_password():
                 return redirect(url_for("settings.user_settings"))
 
             elif check_password_hash(curr_psswd_in_db, edited_psswd):
-        
                 flash("You are already using that password!", category='error')
                 return redirect(url_for("settings.user_settings"))
             
@@ -98,7 +97,7 @@ def change_password():
             flash('Password successfully changed!', category='success')
             
 
-        except EXCEPTION as e:
+        except Exception as e:
             flash(f"Password could not be updated!\nError: {e}", category='error')
 
     return redirect(url_for("settings.user_settings"))

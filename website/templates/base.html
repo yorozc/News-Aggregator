@@ -16,54 +16,56 @@
 </head>
 <body>
     <header>
-        <p id="news-name">NOTL News</p>
-        <i class="fa-solid fa-bars menu-toggle" aria-label="Menu" role="button" tabindex="0"></i>
-        {% if current_user.is_authenticated %}
-            <nav>
-                <ul class="nav-links">
-                    <form action="{{url_for('routes.search')}}" method="GET" class="search-bar">
-                        <input type="text" name="q" placeholder="Search" >
-
-                        <button type="submit" class="search-btn">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </button>
-                    </form> 
-                    <li><a href="/">Home</a></li>
-                    <div class="dropdown">
-                        <button class="user-btn"><i class="fa-solid fa-user"></i></button>
-                        <div class="content">
-                            <a href="/saved_articles">Saved Articles</a>
-                            <a href="/settings">Settings</a>
-                            <a href="/logout">Logout</a>
-                        </div>
-                    </div>
-                
-                    
-                    <!-- <a class="cta" href="/logout"><button class="accBtn">Log out</button></a> -->
-                </ul>
-            </nav>
-        {% else %}
-
-            <nav>
-
-                <ul class="nav-links">
-                    <li>
+        <div class="header-inner">
+            <p id="news-name">NOTL News</p>
+            <i class="fa-solid fa-bars menu-toggle" aria-label="Menu" role="button" tabindex="0"></i>
+            {% if current_user.is_authenticated %}
+                <nav>
+                    <ul class="nav-links">
                         <form action="{{url_for('routes.search')}}" method="GET" class="search-bar">
                             <input type="text" name="q" placeholder="Search" >
 
                             <button type="submit" class="search-btn">
-                                <i class="fa-solid fa-magnifying-glass"></i> 
+                                <i class="fa-solid fa-magnifying-glass"></i>
                             </button>
                         </form> 
-                    </li>
-                    <li><a href="/">Home</a></li>
+                        <li><a href="/">Home</a></li>
+                        <div class="dropdown">
+                            <button class="user-btn"><i class="fa-solid fa-user"></i></button>
+                            <div class="content">
+                                <a href="/saved_articles">Saved Articles</a>
+                                <a href="/settings">Settings</a>
+                                <a href="/logout">Logout</a>
+                            </div>
+                        </div>
                     
-                    <li><a class="cta" href="/login"><button class="accBtn">Log in</button></a></li>
-                    <li><a class="cta" href="/signup"><button class="accBtn">Sign up</button></a></li>
-                </ul>
-            </nav>
-        
-        {% endif %}
+                        
+                        <!-- <a class="cta" href="/logout"><button class="accBtn">Log out</button></a> -->
+                    </ul>
+                </nav>
+            {% else %}
+
+                <nav>
+
+                    <ul class="nav-links">
+                        <li>
+                            <form action="{{url_for('routes.search')}}" method="GET" class="search-bar">
+                                <input type="text" name="q" placeholder="Search" >
+
+                                <button type="submit" class="search-btn">
+                                    <i class="fa-solid fa-magnifying-glass"></i> 
+                                </button>
+                            </form> 
+                        </li>
+                        <li><a href="/">Home</a></li>
+                        
+                        <li><a class="cta" href="/login"><button class="accBtn">Log in</button></a></li>
+                        <li><a class="cta" href="/signup"><button class="accBtn">Sign up</button></a></li>
+                    </ul>
+                </nav>
+            
+            {% endif %}
+        </div>
     </header>
     {% with messages = get_flashed_messages(with_categories=true)%}
         {% if messages %}

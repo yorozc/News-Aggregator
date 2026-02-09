@@ -1,10 +1,9 @@
 import feedparser
 
 rss_feeds = {
-    'Yahoo Finance': 'https://finance.yahoo.com/news/rssindex',
-    'Hacker News': 'https://news.ycombinator.com/rss',
-    'Wall Street Journal': 'https://feeds.a.dj.com/rss/RSSMarketsMain.xml',
-    'CNBC': 'https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839069'
+    'NPR Health Shots': 'https://feeds.npr.org/1128/rss.xml',
+    'Medical News Bulletin': 'https://medicalnewsbulletin.com/feed',
+    'Medscape': 'https://www.medscape.com/cx/rssfeeds/2700.xml',
 }
 
 def parsed_articles():

@@ -24,16 +24,25 @@ li, a, button{
 }
 
 header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: block;
   background-color: #222;
-  padding: 0.8rem 1.5rem;
+  padding: 0.8rem 0;
   color: white;
   font-family: 'Roboto', sans-serif;
   position: sticky;
   top: 0;
   z-index: 1000;
+}
+
+.header-inner{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 1200px;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin: 0 auto;
 }
 
 
@@ -452,6 +461,7 @@ input[type=submit]{
   align-items: center;
   justify-content: space-between;
   margin-bottom: .6rem;
+  padding: 1rem;
 
   h2 {
     margin: 0;
