@@ -7,7 +7,7 @@ rss_feeds = {
 }
 
 neuro_sci_feeds = {
-    'Neuroscience': 'https://www.jneurosci.org/rss/current.xml',
+    'JNeuroSci': 'https://www.jneurosci.org/rss/current.xml',
     'Behavior/Cognitive': 'https://www.jneurosci.org/rss/Behavioral_Cognitive.xml',
 }
 
@@ -30,9 +30,10 @@ def neurosci_articles():
         parsed_feed = feedparser.parse(feed)
         entries = [(source, entry) for entry in parsed_feed.entries]
         articles.extend(entries)
+    print(articles)
 
     # sorts articles for the newest
-    articles = sorted(articles, key=lambda x: x[1].published_parsed, reverse=True)
+    articles = sorted(articles, key=lambda x: x[1].updated, reverse=True)
 
     # print(articles[1][1])
     return articles
