@@ -569,6 +569,10 @@ input[type=submit] {
   opacity: 0.8;
 }
 
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
 .dropdown a {
   display: block;
   color: rgb(255, 255, 255);
@@ -577,8 +581,9 @@ input[type=submit] {
 }
 .dropdown .content {
   display: none;
-  right: 24px;
   position: absolute;
+  top: 100%;
+  right: 0%;
   background-color: #24252a;
   min-width: 100px;
   border: 1px solid white;

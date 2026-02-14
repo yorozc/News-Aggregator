@@ -592,6 +592,8 @@ input[type=submit]{
 }
 
 .dropdown{
+  position: relative;
+  display: inline-block;
 
     & a{
         display: block;
@@ -602,8 +604,9 @@ input[type=submit]{
 
     & .content{
         display: none;
-        right: 24px;
         position: absolute;
+        top: 100%;
+        right: 0%;
         background-color: $bg_color;
         min-width: 100px;
         border: 1px solid white;
