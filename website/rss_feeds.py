@@ -6,9 +6,27 @@ rss_feeds = {
     'Medscape': 'https://www.medscape.com/cx/rssfeeds/2700.xml',
 }
 
+neuro_sci_feeds = {
+    'Neuroscience': 'https://www.jneurosci.org/rss/current.xml',
+    'Behavior/Cognitive': 'https://www.jneurosci.org/rss/Behavioral_Cognitive.xml',
+}
+
 def parsed_articles():
     articles = []
     for source, feed in rss_feeds.items():
+        parsed_feed = feedparser.parse(feed)
+        entries = [(source, entry) for entry in parsed_feed.entries]
+        articles.extend(entries)
+
+    # sorts articles for the newest
+    articles = sorted(articles, key=lambda x: x[1].published_parsed, reverse=True)
+
+    # print(articles[1][1])
+    return articles
+
+def neurosci_articles():
+    articles = []
+    for source, feed in neuro_sci_feeds.items():
         parsed_feed = feedparser.parse(feed)
         entries = [(source, entry) for entry in parsed_feed.entries]
         articles.extend(entries)
