@@ -7,8 +7,7 @@ from .db import get_users_collection
 
 categories = Blueprint('categories', __name__)
 
-@categories.route("/neuro", methods=["GET"])
-def neuro():
+def article_format():
     articles = neurosci_articles()
 
     # formats dates to Month Day, Year
@@ -28,9 +27,16 @@ def neuro():
 
     total_pages = total_articles + per_page + 1
 
+    return paginated_articles, page, daily_debrief, page, total_pages
+# return paginated_articles, page, daily_debrief, page, total_pages
+
+@categories.route("/neuro", methods=["GET"])
+def neuro():
+    paginated_articles, page, daily_debrief, page, total_pages = article_format()
+
     if current_user.is_authenticated:
         return render_template("neuro.html", name=current_user.username, articles=paginated_articles, daily_debrief=daily_debrief, page=page, total_pages=total_pages)
-       
+        
     else:
         flash("Login or create an account!", category="error")
         return render_template("neuro.html", articles=paginated_articles, page=page,daily_debrief=daily_debrief, total_pages=total_pages)
