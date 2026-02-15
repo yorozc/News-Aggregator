@@ -5,7 +5,6 @@
 {% endblock %}
 
 {% block body %}
-
 <main class="page-container">
     <section class="daily-debrief" aria-label="Daily Debrief">
         <header class="debrief-header">
@@ -51,7 +50,7 @@
                     </a>
                 </h2>
                 <div class="article-meta">
-                    <p>{{ entry[1].published }}</p>
+                    <p>{{ entry[1].published}}</p>
                     <div class="right-side-meta">
                         <span class="source-badge">{{ entry[0] }}</span>
                         {% if current_user.is_authenticated %}
@@ -70,11 +69,11 @@
     </div>
     <div class="pagination">
         {% if page > 1 %}
-            <a href="{{ url_for('routes.index', page=page-1)}}">Previous</a>
+            <a href="{{ url_for('categories.neuro', page=page-1)}}">Previous</a>
         {% endif %}
 
         {% if page < total_pages %}
-            <a href="{{ url_for('routes.index', page=page+1)}}">Next</a>
+            <a href="{{ url_for('categories.neuro', page=page+1)}}">Next</a>
         {% endif %}
     </div>
 
@@ -113,7 +112,4 @@
     });
     
 </script>
-
-
-
 {% endblock %}
