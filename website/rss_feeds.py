@@ -11,6 +11,14 @@ neuro_sci_feeds = {
     'Behavior/Cognitive': 'https://www.jneurosci.org/rss/Behavioral_Cognitive.xml',
 }
 
+gut_feeds ={
+    'Gut-BMJ': 'https://gut.bmj.com/rss/ahead.xml'
+}
+
+heart_feeds = {
+    'Heart-BMJ': 'https://heart.bmj.com/rss/ahead.xml'
+}
+
 def parsed_articles():
     articles = []
     for source, feed in rss_feeds.items():
@@ -35,5 +43,30 @@ def neurosci_articles():
     # sorts articles for the newest
     articles = sorted(articles, key=lambda x: x[1].updated, reverse=True)
 
-    # print(articles[1][1])
+    return articles
+
+def gut_articles():
+    articles = []
+    for source, feed in gut_feeds.items():
+        parsed_feed = feedparser.parse(feed)
+        entries = [(source, entry) for entry in parsed_feed.entries]
+        articles.extend(entries)
+    print(articles)
+
+    # sorts articles for the newest
+    articles = sorted(articles, key=lambda x: x[1].date, reverse=True)
+
+    return articles
+
+def heart_articles():
+    articles = []
+    for source, feed in gut_feeds.items():
+        parsed_feed = feedparser.parse(feed)
+        entries = [(source, entry) for entry in parsed_feed.entries]
+        articles.extend(entries)
+    print(articles)
+
+    # sorts articles for the newest
+    articles = sorted(articles, key=lambda x: x[1].date, reverse=True)
+
     return articles
