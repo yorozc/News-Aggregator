@@ -55,7 +55,7 @@ def gut():
     
 @categories.route("/heart", methods=["GET"])
 def heart():
-    articles = gut_articles()
+    articles = heart_articles()
     paginated_articles, page, daily_debrief, page, total_pages = article_format(articles)
 
     if current_user.is_authenticated:

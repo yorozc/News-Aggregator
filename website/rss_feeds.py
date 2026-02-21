@@ -60,7 +60,7 @@ def gut_articles():
 
 def heart_articles():
     articles = []
-    for source, feed in gut_feeds.items():
+    for source, feed in heart_feeds.items():
         parsed_feed = feedparser.parse(feed)
         entries = [(source, entry) for entry in parsed_feed.entries]
         articles.extend(entries)
